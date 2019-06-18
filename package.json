@@ -1,0 +1,27 @@
+{
+  "name": "weevio-validator",
+  "version": "1.0.0",
+  "description": "A JavaScript SDK used for validation on Weevio Cloud.",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel --source-maps --out-dir=dist src",
+    "pack": "npm run build && npm run build-doc && npm pack",
+    "start": "npm run build && node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Weevio",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "minimist": "^1.2.0",
+    "tape": "^4.10.2",
+    "validator": "^11.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "jsdoc": "^3.6.2"
+  }
+}
