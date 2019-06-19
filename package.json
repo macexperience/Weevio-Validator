@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel --source-maps --out-dir=dist src",
+    "build-doc": "jsdoc -c ./jsDoc.config.json -r",
     "pack": "npm run build && npm run build-doc && npm pack",
     "start": "npm run build && node src/index.js",
     "test": "npm run build && node test/Test.js | tap-spec"
