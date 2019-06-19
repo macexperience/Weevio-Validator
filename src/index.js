@@ -6,9 +6,9 @@ import "regenerator-runtime/runtime";
 import Email from './models/Email/Email';
 
 export default class Index {
-    constructor(config) {
+    constructor() {
         return {
-            email: new Email({ ...config })
+            email: new Email()
         }
     }
 }
