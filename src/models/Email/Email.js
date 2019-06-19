@@ -8,7 +8,7 @@ class Email {
      * @param {String} emailStr - Email to be validated
      * @returns {Boolean}
      */
-    isEmail(emailStr) {
+    isValid(emailStr) {
         this.method = "email.isEmail"
         return new Promise((resolve, reject) => {
             try {
@@ -20,4 +20,4 @@ class Email {
     }
 }
 
-export default Email;
+export default Email

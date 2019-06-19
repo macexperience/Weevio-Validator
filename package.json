@@ -7,13 +7,14 @@
     "build": "babel --source-maps --out-dir=dist src",
     "pack": "npm run build && npm run build-doc && npm pack",
     "start": "npm run build && node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build && node test/Test.js | tap-spec"
   },
   "keywords": [],
   "author": "Weevio",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
+    "faker": "^4.1.0",
     "minimist": "^1.2.0",
     "tap-json": "^1.0.0",
     "tap-spec": "^5.0.0",
