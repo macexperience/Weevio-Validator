@@ -14,15 +14,16 @@ export default class Email_Test {
     run(modules) {
         modules.test(`Email Validator`, async (t) => {
             try {
-                console.log(`running email validator tests.....`)
                 const parallel = await Promise.all([
                     modules.weevioValidator.email.isValid(modules.sample.emails[0]),
                     modules.weevioValidator.email.isValid(modules.sample.emails[1]),
                     modules.weevioValidator.email.isValid(modules.sample.emails[2]),
                     modules.weevioValidator.email.isValid(modules.sample.emails[3])
                 ])
-                console.log(parallel)
-                
+                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[0]}'' is valid`)
+                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[1]}'' is valid`)
+                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[2]}'' is valid`)
+                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[3]}'' is valid`)
                 t.end()
             } catch (e) {
                 t.end(e.message)

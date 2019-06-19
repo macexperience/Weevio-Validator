@@ -9,7 +9,7 @@ const faker = require('faker')
 
 /** Test Class */
 class Test {
-    
+
     constructor() {
         //Modules
         this.assert = require('assert')
@@ -29,8 +29,11 @@ class Test {
         return new Promise(async (resolve, reject) => {
             this.test(`Preconditions (gathers random sample emails via faker.js)`, async (t) => {
                 try {
-                    var samples = new Array(4)
-                    this.sample.emails = samples.map(element => faker.internet.email())
+                    var samples = ['','','','']
+                    var emails = samples.map(async element => {
+                        return faker.internet.email()
+                    })
+                    this.sample.emails = await Promise.all(emails)
                     t.pass(`Generated random sample emails from faker.js`)
                     t.end()
                     resolve()
@@ -51,7 +54,6 @@ class Test {
 
             //Then, run tests...
             new Email_Test(this)
-
         } catch (err) {
             console.error(err)
         }
