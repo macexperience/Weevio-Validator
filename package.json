@@ -2,7 +2,7 @@
   "name": "weevio-validator",
   "version": "1.1.0",
   "description": "A JavaScript SDK used for validation on Weevio Cloud.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel --source-maps --out-dir=dist src",
     "build-doc": "jsdoc -c ./jsDoc.config.json -r",
