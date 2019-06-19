@@ -1,14 +1,23 @@
 //Third-Party Modules
 import validator from 'validator'
 
+/** Email Class */
 class Email {
-    /** Validator Class Configuration
-     * @param {Object} config - Configuration object
+    /** isEmail
+     * @version 1.0
+     * @param {String} emailStr - Email to be validated
+     * @returns {Boolean}
      */
-    constructor(config) {
-
+    isEmail(emailStr) {
+        this.method = "email.isEmail"
+        return new Promise((resolve, reject) => {
+            try {
+                resolve(validator.isEmail(emailStr))
+            } catch (err) {
+                reject(err)
+            }
+        })
     }
-
 }
 
 export default Email;
