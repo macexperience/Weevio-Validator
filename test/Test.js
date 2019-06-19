@@ -17,7 +17,8 @@ class Test {
 
         //Sample Data
         this.sample = {
-            emails: null
+            emails: null,
+            emails_ws: null
         }
 
         this.weevioValidator = new WeevioValidator()
@@ -33,7 +34,10 @@ class Test {
                     var emails = samples.map(async element => {
                         return faker.internet.email()
                     })
+                    var wsSamples = ['','','','']
+                    var whitespaceEmails = wsSamples.map(async element => `    ${faker.internet.email()}     `)
                     this.sample.emails = await Promise.all(emails)
+                    this.sample.ws_emails = await Promise.all(whitespaceEmails)
                     t.pass(`Generated random sample emails from faker.js`)
                     t.end()
                     resolve()
