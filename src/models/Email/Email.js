@@ -5,14 +5,14 @@ import validator from 'validator'
 class Email {
     /** isEmail
      * @version 1.0
-     * @param {String} emailStr - Email to be validated
+     * @param {String} emailS - Email to be validated
      * @returns {Boolean}
      */
-    isValid(emailStr) {
+    isValid(email) {
         this.method = "email.isEmail"
         return new Promise((resolve, reject) => {
             try {
-                resolve(validator.isEmail(emailStr))
+                resolve(validator.isEmail(email))
             } catch (err) {
                 reject(err)
             }
