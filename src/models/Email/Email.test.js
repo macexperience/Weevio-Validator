@@ -14,6 +14,26 @@ export default class Email_Test {
     run(modules) {
         modules.test(`Email Validator`, async (t) => {
             try {
+                //Trim Emails with Inner-Whitespace
+                const inner_ws1 = await modules.weevioValidator.email.trim("    this    at welcome!@test.com  ")
+            } catch (e) {
+                t.equal(
+                    e.message, 
+                    `Email 'this    at welcome!@test.com' contains space(s) within. Remove all whitespace.`,
+                    `Email Validator v1 - Email 'this    at welcome!@test.com' failed successfully.`
+                )
+            }
+            try {
+                //Trim Emails with Inner-Whitespace
+                const inner_ws2 = await modules.weevioValidator.email.trim("testing inner@example.com")
+            } catch (e) {
+                t.equal(
+                    e.message, 
+                    `Email 'testing inner@example.com' contains space(s) within. Remove all whitespace.`,
+                    `Email Validator v1 - Email 'testing inner@example.com' failed successfully.`
+                )
+            }
+            try {
                 //Trim Emails
                 const ws_parallel = await Promise.all([
                     modules.weevioValidator.email.trim(modules.sample.ws_emails[0]),
@@ -33,13 +53,28 @@ export default class Email_Test {
                     modules.weevioValidator.email.isValid(modules.sample.emails[3])
                 ])
                 t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[0]}' is valid`)
-                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[1]}' is valid`)
-                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[2]}' is valid`)
-                t.equal(parallel[0], true, `Email Validator v1 - Email '${modules.sample.emails[3]}' is valid`)
-                t.end()
+                t.equal(parallel[1], true, `Email Validator v1 - Email '${modules.sample.emails[1]}' is valid`)
+                t.equal(parallel[2], true, `Email Validator v1 - Email '${modules.sample.emails[2]}' is valid`)
+                t.equal(parallel[3], true, `Email Validator v1 - Email '${modules.sample.emails[3]}' is valid`)
             } catch (e) {
                 t.end(e.message)
             }
+            //Validate Bad Emails
+            try {
+                const bad_emails = await Promise.all([
+                    modules.weevioValidator.email.isValid("te@#$%@gmail.com"),
+                    modules.weevioValidator.email.isValid("te˙˚∆˙@test.com"),
+                    modules.weevioValidator.email.isValid("∆˚¬∫@example.com"),
+                    modules.weevioValidator.email.isValid("👍🏼🙃@gmail.com")
+                ])
+                t.equal(bad_emails[0], false, `Email Validator v1 - Email 'te@#$%@gmail.com' is not valid.`)
+                t.equal(bad_emails[0], false, `Email Validator v1 - Email 'te˙˚∆˙@test.com' is not valid.`)
+                t.equal(bad_emails[0], false, `Email Validator v1 - Email '∆˚¬∫@example.com' is not valid.`)
+                t.equal(bad_emails[0], false, `Email Validator v1 - Email '👍🏼🙃@gmail.com' is not valid.`)
+            } catch (e) {
+                t.end(e.message)
+            }
+            t.end()
         })
     }
 }
