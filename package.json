@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "faker": "^4.1.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "tap-json": "^1.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.10.2",
